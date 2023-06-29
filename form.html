@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("[value=submit]").click(function(){
+                //alert("hello");
+                var url="http://localhost:9000/getDataTable";
+                var name=$("#name").val();
+                var bdate=$("#bdate").val();
+                var email=$("#email").val();
+                var qlyfn=$("#qlyfn").val();
+                $.post(url,{name,bdate,email,qualification:qlyfn},function(data,status){
+                    if(status=='success')
+                        $("#space").html(data);
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <form method="post">
+        enter name : 
+        <input type="text" id="name"><br/>
+        enter birthdate : 
+        <input type="Date" id="bdate"><br/>
+        enter email : 
+        <input type="email" id="email"><br/>
+        enter qualification : 
+        <input type="text" id="qlyfn"><br/>
+        <input type="button" value="submit" id="submit">
+    </form>
+    <div id="space"></div>
+</body>
+</html>
